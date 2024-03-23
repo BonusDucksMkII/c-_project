@@ -14,3 +14,19 @@ D:\Documents\BYU-I Class Folders\CSE 310\c#_project\encryption_project\encryptio
 D:\Documents\BYU-I Class Folders\CSE 310\c#_project\encryption_project\encryption_project\obj\Debug\net5.0\encryption_project.pdb
 D:\Documents\BYU-I Class Folders\CSE 310\c#_project\encryption_project\encryption_project\obj\Debug\net5.0\encryption_project.genruntimeconfig.cache
 D:\Documents\BYU-I Class Folders\CSE 310\c#_project\encryption_project\encryption_project\obj\Debug\net5.0\ref\encryption_project.dll
+C:\Users\indif\Documents\CSE 310\c-_project\encryption_project\encryption_project\bin\Debug\net5.0\encryption_project.exe
+C:\Users\indif\Documents\CSE 310\c-_project\encryption_project\encryption_project\bin\Debug\net5.0\encryption_project.deps.json
+C:\Users\indif\Documents\CSE 310\c-_project\encryption_project\encryption_project\bin\Debug\net5.0\encryption_project.runtimeconfig.json
+C:\Users\indif\Documents\CSE 310\c-_project\encryption_project\encryption_project\bin\Debug\net5.0\encryption_project.runtimeconfig.dev.json
+C:\Users\indif\Documents\CSE 310\c-_project\encryption_project\encryption_project\bin\Debug\net5.0\encryption_project.dll
+C:\Users\indif\Documents\CSE 310\c-_project\encryption_project\encryption_project\bin\Debug\net5.0\ref\encryption_project.dll
+C:\Users\indif\Documents\CSE 310\c-_project\encryption_project\encryption_project\bin\Debug\net5.0\encryption_project.pdb
+C:\Users\indif\Documents\CSE 310\c-_project\encryption_project\encryption_project\obj\Debug\net5.0\encryption_project.csproj.AssemblyReference.cache
+C:\Users\indif\Documents\CSE 310\c-_project\encryption_project\encryption_project\obj\Debug\net5.0\encryption_project.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\indif\Documents\CSE 310\c-_project\encryption_project\encryption_project\obj\Debug\net5.0\encryption_project.AssemblyInfoInputs.cache
+C:\Users\indif\Documents\CSE 310\c-_project\encryption_project\encryption_project\obj\Debug\net5.0\encryption_project.AssemblyInfo.cs
+C:\Users\indif\Documents\CSE 310\c-_project\encryption_project\encryption_project\obj\Debug\net5.0\encryption_project.csproj.CoreCompileInputs.cache
+C:\Users\indif\Documents\CSE 310\c-_project\encryption_project\encryption_project\obj\Debug\net5.0\encryption_project.dll
+C:\Users\indif\Documents\CSE 310\c-_project\encryption_project\encryption_project\obj\Debug\net5.0\ref\encryption_project.dll
+C:\Users\indif\Documents\CSE 310\c-_project\encryption_project\encryption_project\obj\Debug\net5.0\encryption_project.pdb
+C:\Users\indif\Documents\CSE 310\c-_project\encryption_project\encryption_project\obj\Debug\net5.0\encryption_project.genruntimeconfig.cache

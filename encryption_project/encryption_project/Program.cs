@@ -25,6 +25,7 @@ namespace encryption_project
             FileStream fileRead = new(fileIn, FileMode.Open, FileAccess.Read);
             FileStream fileWrite = new(fileOut, FileMode.OpenOrCreate, FileAccess.Write);
 
+            // 'using' keyword disposes IDisposable object (in this case, the Aes object) at end of block
             using(Aes newAes = Aes.Create()){
                 // Set up the Aes object and CryptoStream
                 ICryptoTransform dataEncrypt = newAes.CreateEncryptor(newAes.Key, newAes.IV);
@@ -33,11 +34,12 @@ namespace encryption_project
                 byte[] buf = new byte[1024];
                 UTF8Encoding format = new UTF8Encoding(true);
                 int fileSize;
-                // .Read method returns total amount of bytes read into buffer; method ALSO reads bytes into buffer when called
+                // .Read method returns total amount of bytes read into buffer; method ALSO reads bytes into specified buffer when called
                 while ((fileSize = fileRead.Read(buf, 0 , buf.Length)) > 0)
                 {
                     // UTF8Encoding object has GetString method, formats bytes into utf8
                     Console.WriteLine(format.GetString(buf));
+                    // stream objects all derive from base class, CryptoStream
                     writeStream.Write(buf);
                 }
                 
