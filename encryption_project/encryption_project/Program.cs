@@ -41,6 +41,7 @@ namespace encryption_project
             FileStream fileRead = new(fileInName, FileMode.Open, FileAccess.Read);
             FileStream fileWrite = new(fileOutName, FileMode.OpenOrCreate, FileAccess.Write);
 
+            // 'using' keyword disposes IDisposable object (in this case, the Aes object) at end of block
             using(Aes newAes = Aes.Create()){
                 // Set up the Aes object and CryptoStream
                 // Removed padding since PCKS7 (the default) wasn't working right
@@ -56,6 +57,7 @@ namespace encryption_project
                 {
                     // UTF8Encoding object has GetString method, formats bytes into utf8
                     Console.WriteLine(format.GetString(buf));
+                    // stream objects all derive from base class, CryptoStream
                     writeStream.Write(buf);
                 }
                 // Save the key for decrypting

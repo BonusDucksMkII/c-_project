@@ -1,0 +1,5 @@
+.vscode/
+encryption_project/.vs
+encryption_project/encryption_project/
+*.txt
+*.des
