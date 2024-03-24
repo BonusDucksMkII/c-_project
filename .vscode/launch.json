@@ -14,7 +14,7 @@
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/encryption_project/encryption_project/bin/Debug/net5.0/encryption_project.dll",
-            "args": [],
+            "args": ["yes.txt", "maybe.txt", "-d"],
             "cwd": "${workspaceFolder}/encryption_project/encryption_project",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",

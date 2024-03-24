@@ -12,40 +12,121 @@ namespace encryption_project
             // Console.WriteLine(args[0]);
             if (args.Length == 0){
                 Console.WriteLine("This program will encrypt an input file using the AES.");
-                Console.WriteLine("Usage: [input file] [output file]");
+                Console.WriteLine("Usage: [input file] [output file] [-e/-d (encrypt/decrypt)]");
                 return;
-            } else if (args.Length < 2){
-                Console.WriteLine("Usage: [input file] [output file]");
+            } else if (args.Length < 3){
+                Console.WriteLine("Usage: [input file] [output file] [-e/-d (encrypt/decrypt)]");
+                return;
+            } else if (args.Length > 3){
+                Console.WriteLine("Usage: [input file] [output file] [-e/-d (encrypt/decrypt)]");
                 return;
             }
 
             string fileIn = $"{args[0]}";
             string fileOut = $"{args[1]}";
+            string fileOption = $"{args[2]}";
 
-            FileStream fileRead = new(fileIn, FileMode.Open, FileAccess.Read);
-            FileStream fileWrite = new(fileOut, FileMode.OpenOrCreate, FileAccess.Write);
+            Aes newAes = Aes.Create();
+
+            if (fileOption == "-e"){
+                EncryptFile(newAes, fileIn, fileOut);
+            } else if (fileOption == "-d"){
+                DecryptFile(newAes, fileIn, fileOut);
+            } else {
+                Console.WriteLine("Invalid option");
+                return;
+            }
+        }
+        static void EncryptFile(Aes aesObj, string fileInName, string fileOutName){
+            FileStream fileRead = new(fileInName, FileMode.Open, FileAccess.Read);
+            FileStream fileWrite = new(fileOutName, FileMode.OpenOrCreate, FileAccess.Write);
 
             using(Aes newAes = Aes.Create()){
                 // Set up the Aes object and CryptoStream
-                ICryptoTransform dataEncrypt = newAes.CreateEncryptor(newAes.Key, newAes.IV);
+                // Removed padding since PCKS7 (the default) wasn't working right
+                newAes.Padding = PaddingMode.None;
+                ICryptoTransform dataEncrypt = newAes.CreateEncryptor(aesObj.Key, aesObj.IV);
                 CryptoStream writeStream = new(fileWrite, dataEncrypt, CryptoStreamMode.Write);
 
                 byte[] buf = new byte[1024];
                 UTF8Encoding format = new UTF8Encoding(true);
-                int fileSize;
+
                 // .Read method returns total amount of bytes read into buffer; method ALSO reads bytes into buffer when called
-                while ((fileSize = fileRead.Read(buf, 0 , buf.Length)) > 0)
+                while (fileRead.Read(buf, 0 , buf.Length) > 0)
                 {
                     // UTF8Encoding object has GetString method, formats bytes into utf8
                     Console.WriteLine(format.GetString(buf));
                     writeStream.Write(buf);
                 }
-                
+                // Save the key for decrypting
+                WriteKey(aesObj);
+                WriteIV(aesObj);
+
+                // Close the streams
+                writeStream.Close();
                 fileRead.Close();
                 fileWrite.Close();
             }
         }
+        static void DecryptFile(Aes aesObj, string fileInName, string fileOutName){
+            FileStream fileRead = new(fileInName, FileMode.Open, FileAccess.Read);
+            FileStream fileWrite = new(fileOutName, FileMode.OpenOrCreate, FileAccess.Write);
+
+            using(Aes newAes = Aes.Create()){
+                // Set up the Aes object and CryptoStream
+                // Removed padding since PCKS7 (the default) wasn't working right
+                newAes.Padding = PaddingMode.None;
+                ICryptoTransform dataDecrypt = newAes.CreateDecryptor(ReadKey("key.des"), ReadIV("iv.des"));
+                CryptoStream writeStream = new(fileWrite, dataDecrypt, CryptoStreamMode.Write);
+
+                byte[] buf = new byte[1024];
+                UTF8Encoding format = new UTF8Encoding(true);
+
+                // .Read method returns total amount of bytes read into buffer; method ALSO reads bytes into buffer when called
+                while (fileRead.Read(buf, 0 , buf.Length) > 0)
+                {
+                    // UTF8Encoding object has GetString method, formats bytes into utf8
+                    Console.WriteLine(format.GetString(buf));
+                    writeStream.Write(buf);
+                }
+                // Close the streams
+                writeStream.Close();
+                fileRead.Close();
+                fileWrite.Close();
+            }
+        }
+        static void WriteKey(Aes aesObj){
+            FileStream fileWrite = new("key.des", FileMode.OpenOrCreate, FileAccess.Write);
+            byte[] buf = aesObj.Key;
+
+            fileWrite.Write(buf);
+
+            fileWrite.Close();
+        }
+        static void WriteIV(Aes aesObj){
+            FileStream fileWrite = new("iv.des", FileMode.OpenOrCreate, FileAccess.Write);
+            byte[] buf = aesObj.IV;
+
+            fileWrite.Write(buf);
+
+            fileWrite.Close();
+        }
+        static byte[] ReadKey(string keyFile){
+            FileStream fileRead = new(keyFile, FileMode.OpenOrCreate, FileAccess.Read);
+            byte[] buf = new byte[32];
+
+            fileRead.Read(buf, 0, buf.Length);
+            return buf;
+        }
+        static byte[] ReadIV(string keyFile){
+            FileStream fileRead = new(keyFile, FileMode.OpenOrCreate, FileAccess.Read);
+            byte[] buf = new byte[16];
+
+            fileRead.Read(buf, 0, buf.Length);
+            return buf;
+        }
     }
+    
 }
 
 

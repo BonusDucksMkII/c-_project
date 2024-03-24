@@ -14,3 +14,4 @@ D:\Documents\BYU-I Class Folders\CSE 310\c#_project\encryption_project\encryptio
 D:\Documents\BYU-I Class Folders\CSE 310\c#_project\encryption_project\encryption_project\obj\Debug\net5.0\encryption_project.pdb
 D:\Documents\BYU-I Class Folders\CSE 310\c#_project\encryption_project\encryption_project\obj\Debug\net5.0\encryption_project.genruntimeconfig.cache
 D:\Documents\BYU-I Class Folders\CSE 310\c#_project\encryption_project\encryption_project\obj\Debug\net5.0\ref\encryption_project.dll
+D:\Documents\BYU-I Class Folders\CSE 310\c#_project\encryption_project\encryption_project\obj\Debug\net5.0\encryption_project.sourcelink.json
